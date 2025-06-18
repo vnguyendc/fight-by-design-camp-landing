@@ -31,4 +31,4 @@ The project uses vanilla HTML, CSS, and JavaScript. No build process or dependen
 
 ## License
 
-[Your chosen license] 
+[Your chosen license]
