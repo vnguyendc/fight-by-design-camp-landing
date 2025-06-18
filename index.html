@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fight Camp S&C - Train Like a Champion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #0a0a0a;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+        
+        .cta-nav {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        
+        .cta-nav:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(255,107,53,0.1)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23111" width="1200" height="800"/><path fill="%23ff6b35" opacity="0.1" d="M0,400 Q300,200 600,400 T1200,400 L1200,800 L0,800 Z"/></svg>');
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+        
+        .hero-text .highlight {
+            color: #ff6b35;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-text h2 {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: #ccc;
+            font-weight: normal;
+        }
+        
+        .hero-cta {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 18px 36px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,107,53,0.4);
+        }
+        
+        .social-proof {
+            margin-top: 30px;
+            color: #999;
+        }
+        
+        .hero-image {
+            text-align: center;
+        }
+        
+        .fighter-img {
+            width: 100%;
+            max-width: 500px;
+            height: 400px;
+            background: linear-gradient(45deg, #333, #555);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff6b35;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        /* Problem Section */
+        .problem {
+            background: #111;
+            padding: 100px 0;
+            color: white;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #ff6b35;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .problem-card {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid #ff6b35;
+        }
+        
+        .problem-card h3 {
+            color: #ff6b35;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        /* Solution Section */
+        .solution {
+            background: #0a0a0a;
+            padding: 100px 0;
+            color: white;
+        }
+        
+        .solution-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .credentials {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        
+        .credentials h4 {
+            color: #ff6b35;
+            margin-bottom: 15px;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            background: #111;
+            padding: 100px 0;
+            color: white;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .benefit-card {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .benefit-icon {
+            font-size: 3rem;
+            color: #ff6b35;
+            margin-bottom: 20px;
+        }
+        
+        .benefit-card h3 {
+            color: #ff6b35;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: #0a0a0a;
+            padding: 100px 0;
+            color: white;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .testimonial-card {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+        }
+        
+        .stars {
+            color: #ffd700;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .quote {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+        
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ff6b35;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .author-info strong {
+            color: #ff6b35;
+        }
+        
+        /* Action Plan */
+        .action-plan {
+            background: #111;
+            padding: 100px 0;
+            color: white;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .step {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .step-number {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .step h3 {
+            color: #ff6b35;
+            margin-bottom: 15px;
+        }
+        
+        /* FAQ */
+        .faq {
+            background: #0a0a0a;
+            padding: 100px 0;
+            color: white;
+        }
+        
+        .faq-item {
+            background: #1a1a1a;
+            margin: 20px 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            background: #222;
+            padding: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            color: #ccc;
+        }
+        
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .final-cta-button {
+            background: white;
+            color: #ff6b35;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .final-cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .solution-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo">Fight Camp S&C</div>
+                <ul class="nav-links">
+                    <li><a href="#benefits">Program</a></li>
+                    <li><a href="#testimonials">Results</a></li>
+                    <li><a href="#action-plan">How It Works</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+                <a href="#final-cta" class="cta-nav">Get My Fight Camp</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Train Like a Pro. <span class="highlight">Fight at Your Peak.</span></h1>
+                    <h2>The 12-week fight camp strength & conditioning program built from real elite-level protocols. Stop guessing—start peaking on fight night.</h2>
+                    <a href="#final-cta" class="hero-cta">Get My Fight Camp Program</a>
+                    <div class="social-proof">
+                        <strong>Trusted by 500+ fighters worldwide</strong> • Used by pros fighting at the highest levels
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="fighter-img">
+                        Elite Fighter Training
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2 class="section-title">Stop Training Hard. Start Training Smart.</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #ccc; max-width: 800px; margin: 0 auto;">You're putting in the work, but you're not seeing the results. Sound familiar?</p>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>🥊 "I gas out by round 2"</h3>
+                    <p>You train hard but your cardio fails when it matters most. Your strength disappears and you're surviving instead of dominating.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>📅 "I don't know how to peak for my fight"</h3>
+                    <p>You're overtraining, exhausted, and following random workouts instead of a structured camp that builds to fight night.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>💪 "I train hard but don't feel fight-ready"</h3>
+                    <p>You're grinding but missing the strength, power, and conditioning systems that separate weekend warriors from real fighters.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>🤯 "Information overload everywhere"</h3>
+                    <p>Instagram shows fighters doing crazy workouts, but you don't know what actually works or how to structure a real camp.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>🏥 "I keep getting injured or burnt out"</h3>
+                    <p>No proper periodization, recovery, or mobility work—just endless grinding that breaks your body down.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>🎯 "I want to train like a real fighter"</h3>
+                    <p>You know there's a difference between weekend training and professional fight prep, but you don't have access to elite-level programming.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="container">
+            <div class="solution-content">
+                <div>
+                    <h2 class="section-title" style="text-align: left;">The Solution: Elite Fight Camp Programming</h2>
+                    <p style="font-size: 1.2rem; color: #ccc; margin-bottom: 30px;">We've worked with fighters at the highest levels—from regional champions to international competitors. We know what separates weekend warriors from elite fighters: <strong style="color: #ff6b35;">structured, periodized programming that peaks at the right time.</strong></p>
+                    
+                    <p style="color: #ccc; margin-bottom: 20px;">Our 12-Week Fight Camp S&C program isn't just another workout plan. It's the same systematic approach used by professional fighters preparing for the biggest nights of their careers.</p>
+                    
+                    <div class="credentials">
+                        <h4>Why Trust Us?</h4>
+                        <ul style="color: #ccc;">
+                            <li>✓ Built from real in-camp protocols used by elite fighters</li>
+                            <li>✓ Proven periodization system that peaks performance on fight night</li>
+                            <li>✓ Used by pros fighting in major organizations</li>
+                            <li>✓ Structured for Muay Thai, MMA, and Boxing athletes</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div style="background: #1a1a1a; padding: 40px; border-radius: 20px; text-align: center;">
+                        <h3 style="color: #ff6b35; margin-bottom: 20px;">Real Fighter. Real Results.</h3>
+                        <p style="color: #ccc; font-style: italic;">"I used to overtrain and burn out before fights. This program taught me how to actually peak when it mattered. I went from gassing in round 2 to finishing strong in round 5."</p>
+                        <div style="margin-top: 20px; color: #ff6b35; font-weight: bold;">- Jake M., Amateur Muay Thai Fighter</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <h2 class="section-title">What You Get: Elite-Level Fight Preparation</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>12-Week Periodized Program</h3>
+                    <p>Structured progression from strength building to fight-specific conditioning, with proper tapers and deloads—exactly how the pros prepare.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Peak on Fight Night</h3>
+                    <p>Stop arriving exhausted. Our periodization ensures you're strongest, fastest, and most conditioned when you step in the ring.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💪</div>
+                    <h3>Fighting Strength & Power</h3>
+                    <p>Build the explosive power and functional strength that translates directly to harder punches, stronger clinch work, and better takedown defense.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🫁</div>
+                    <h3>Elite Conditioning Systems</h3>
+                    <p>Develop the cardiovascular base and anaerobic power to dominate every round—from the first bell to the final seconds.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📱</div>
+                    <h3>TrainHeroic App Integration</h3>
+                    <p>Professional-grade tracking and progression through a clean, easy-to-use app. See your progress, follow your plan, train like a pro.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🏆</div>
+                    <h3>Complete Fight Prep System</h3>
+                    <p>Includes warmups, cooldowns, mobility work, and recovery protocols. Everything you need for a professional-level fight camp.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Real Fighters. Real Results.</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="quote">"Before this program, I was overtraining and showing up to fights already exhausted. Now I know how to peak properly. I felt stronger in round 3 than I did in round 1—that's never happened before."</div>
+                    <div class="author">
+                        <div class="author-img">M</div>
+                        <div class="author-info">
+                            <strong>Marcus T.</strong><br>
+                            <small>MMA Fighter, 4-1 Record</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="quote">"This is the first time I've followed a real structured camp. My coach noticed I was hitting harder and moving better. The periodization actually works—I peaked right on fight night."</div>
+                    <div class="author">
+                        <div class="author-img">S</div>
+                        <div class="author-info">
+                            <strong>Sarah K.</strong><br>
+                            <small>Muay Thai Fighter, 6-2 Record</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="quote">"Finally, a program that understands fighters need different training than regular athletes. The app made it easy to follow and I could see my progress week by week. Game changer."</div>
+                    <div class="author">
+                        <div class="author-img">D</div>
+                        <div class="author-info">
+                            <strong>David R.</strong><br>
+                            <small>Boxing Coach & Former Pro</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action Plan -->
+    <section class="action-plan" id="action-plan">
+        <div class="container">
+            <h2 class="section-title">How It Works: Your Path to Peak Performance</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Get Instant Access</h3>
+                    <p>Purchase the program and receive immediate access to your 12-week fight camp through the TrainHeroic app.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Follow the Elite Blueprint</h3>
+                    <p>Execute the same periodized training system used by professional fighters—complete with progression tracking and recovery protocols.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Peak on Fight Night</h3>
+                    <p>Arrive at your fight stronger, faster, and more conditioned than ever before. Dominate every round with confidence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">Is this worth the investment compared to training on my own?</div>
+                <div class="faq-answer">This program gives you the same structured approach that professional fighters pay thousands for in their camps. For $99, you get 12 weeks of elite-level programming that would cost 10x more with a personal trainer who understands fight preparation.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How long does each workout take?</div>
+                <div class="faq-answer">Sessions range from 45-75 minutes including warmup and cooldown. The program is designed to complement your technical training, not replace it.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What if I don't have a fight scheduled yet?</div>
+                <div class="faq-answer">Perfect! This program will get you in the best shape of your life and prepare you for when you do book that fight. Many fighters use it as their baseline conditioning program.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Do I need special equipment or a gym membership?</div>
+                <div class="faq-answer">You'll need access to basic gym equipment (barbells, dumbbells, cardio equipment). The program is designed for standard gym setups that most fighters already have access to.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Is this suitable for my fighting style (Muay Thai/MMA/Boxing)?</div>
+                <div class="faq-answer">Yes! The strength and conditioning principles are universal for all combat sports. The program develops the physical attributes needed for elite performance regardless of your specific discipline.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What happens after the 12 weeks?</div>
+                <div class="faq-answer">You'll have the knowledge and experience to either repeat the cycle for another fight or maintain your conditioning. Many fighters run this program multiple times per year for different competitions.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="final-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Train Like a Champion?</h2>
+                <p>Join hundreds of serious fighters who've transformed their performance with elite-level programming.</p>
+                <div class="price">$99 USD / ฿3,613 THB</div>
+                <a href="#" class="final-cta-button" onclick="alert('Redirecting to secure checkout...')">Get My Fight Camp Program</a>
+                <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">✓ Instant access via TrainHeroic app<br>✓ 12-week complete program<br>✓ Built from real fight camp protocols</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isOpen = answer.style.display === 'block';
+                
+                // Close all other answers
+                document.querySelectorAll('.faq-answer').forEach(ans => ans.style.display = 'none');
+                
+                // Toggle current answer
+                answer.style.display = isOpen ? 'none' : 'block';
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
